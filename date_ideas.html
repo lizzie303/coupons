@@ -64,8 +64,8 @@
         .button {
             display: none;
             margin-top: 10px;
-            background-color: #ec4a63; /* Red */
-            color: white;
+            background-color: transparent; /* Red */
+            color: #ec4a63;
             border: red;
             padding: 15px 30px;
             border-radius: 10px;
@@ -130,11 +130,11 @@
         <div class="envelope" onclick="changeImage(this,'Bembu and Kempptu concert')">
             <img src="closed.gif" alt="Envelope 1">
             <img class="replacement-image" src="open1.gif" alt="Replacement Image 1">
-            
+            <div class="button" style="display: none; position: relative; z-index: 1;">Your message here</div>
         </div>
         <!-- Repeat the above .envelope div for the other 5 envelopes -->
     </div>
-    <div class="button" style="display: none;">Your message here</div>
+    
     <body onclick="createHeart(event)"></body>
 
     <script>
