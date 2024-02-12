@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bembu Coupons</title>
+    <style>
+        body {
+            background-color: #FFB6C1; /* Baby Pink */
+            font-family: 'honest script', cursive;
+            color: rgb(245, 239, 239);
+            text-align: center;
+        }
+        .header {
+            padding: 20px;
+            margin: 20px;
+            display: inline-block;
+        }
+        h2 {
+            background-color: #ec4a63; /* Baby Pink */
+            padding: 20px;
+            margin: 20px;
+            border-radius: 20px;
+            border: 2px solid red;
+        }
+        
+        .envelope-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            max-width: 980px; /* Width of three envelopes */
+            margin: 0 auto; /* Center the container */
+        }
+        .envelope {
+            width: 200px; /* Medium size */
+            height: 150px; /* Medium size */
+            background-color: none;
+            margin: 20px;
+            position: relative;
+            border-radius: 15px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.5s ease;
+        }
+        .envelope img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .replacement-image {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: none;
+            border-radius: 15px;
+            border: none;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            animation: bloom 0.5s ease;
+        }
+        .button {
+            display: none;
+            margin-top: 10px;
+            background-color: #ec4a63; /* Red */
+            color: white;
+            border: red;
+            padding: 15px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .heart {
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            font-size: 50px; /* Adjust size of emoji */
+            pointer-events: none;
+            animation: flutter 5s ease-in-out infinite;
+        }
+
+        @keyframes flutter {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            10% { transform: translate(-10px, -10px) rotate(-20deg); }
+            20% { transform: translate(10px, -20px) rotate(20deg); }
+            30% { transform: translate(-10px, -30px) rotate(-10deg); }
+            100% { transform: translate(0, -1000px) rotate(0deg); }
+        }
+        @keyframes bloom {
+            0% {
+                transform: scale(0);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>Henlo Bembu, avail one of these coupons one at a time<br>💌💌💌</h2>
+    </div>
+    <div class="envelope-container">
+        <div class="envelope" onclick="changeImage(this,'Help with your side bizznezz(make cutu website)')">
+            <img src="closed.gif" alt="Envelope 1">
+            <img class="replacement-image" src="open1.gif" alt="Replacement Image 1">
+           
+        </div>
+        <div class="envelope" onclick="changeImage(this,'25 kimssies, 5 coomdles , 2 chompps.(P.S: Coomdles and Chompps could only be given upon meeting :3)')">
+            <img src="closed.gif" alt="Envelope 1">
+            <img class="replacement-image" src="open1.gif" alt="Replacement Image 1">
+            
+        </div>
+        <div class="envelope" onclick="changeImage(this,'Have ramen together')">
+            <img src="closed.gif" alt="Envelope 1">
+            <img class="replacement-image" src="open1.gif" alt="Replacement Image 1">
+            
+        </div>
+        <div class="envelope" onclick="changeImage(this,'Get a personalised bookmark from Bembu')">
+            <img src="closed.gif" alt="Envelope 1">
+            <img class="replacement-image" src="open1.gif" alt="Replacement Image 1">
+            
+        </div>
+        <div class="envelope" onclick="changeImage(this,'Movie night')"">
+            <img src="closed.gif" alt="Envelope 1">
+            <img class="replacement-image" src="open1.gif" alt="Replacement Image 1">
+            
+        </div>
+        <div class="envelope" onclick="changeImage(this,'Bembu and Kempptu concert')">
+            <img src="closed.gif" alt="Envelope 1">
+            <img class="replacement-image" src="open1.gif" alt="Replacement Image 1">
+            
+        </div>
+        <!-- Repeat the above .envelope div for the other 5 envelopes -->
+    </div>
+    <div class="button" style="display: none;">Your message here</div>
+    <body onclick="createHeart(event)"></body>
+
+    <script>
+        function changeImage(envelope, message) {
+            const images = envelope.querySelectorAll('img');
+            const button = document.querySelector('.button');
+    
+            // Add a click event listener to the first image
+            images[0].addEventListener('click', function() {
+                images[0].style.display = 'none'; // Hide the first image
+                images[1].style.display = 'block'; // Show the replacement image
+                button.textContent = message; // Set the button text to the provided message
+                button.style.display = 'block';
+            });
+    
+            setTimeout(() => {
+                button.style.display = 'none';
+            }, 10000); // The message will stay for 10 seconds
+        }
+        function createHeart(event) {
+        var heart = document.createElement("div");
+        heart.className = "heart";
+        heart.style.left = event.clientX - 25 + 'px';
+        heart.style.top = event.clientY - 25 + 'px';
+        heart.textContent = '💞'; /* Use emoji */
+        document.body.appendChild(heart);
+        
+        // Remove the heart after animation
+        setTimeout(function() {
+            document.body.removeChild(heart);
+        }, 5000);
+    }
+    
+    </script>
+    
+    
+    
+</body>
+</html>
