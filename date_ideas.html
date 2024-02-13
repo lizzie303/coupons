@@ -7,7 +7,7 @@
     <style>
         body {
             background-color: #FFB6C1; /* Baby Pink */
-            font-family: 'honest script', cursive;
+            font-family: 'honest script', sans-serif;
             color: rgb(245, 239, 239);
             text-align: center;
         }
@@ -33,11 +33,11 @@
             margin: 0 auto; /* Center the container */
         }
         .envelope {
+            position: relative; /* Set position relative */
             width: 200px; /* Medium size */
             height: 150px; /* Medium size */
             background-color: none;
             margin: 20px;
-            position: relative;
             border-radius: 15px;
             border: none;
             cursor: pointer;
@@ -63,13 +63,20 @@
         }
         .button {
             display: none;
-            margin-top: 10px;
-            background-color: transparent; /* Red */
+            background-color: transparent white; /* Red */
             color: #ec4a63;
             border: red;
             padding: 15px 30px;
             border-radius: 10px;
             cursor: pointer;
+            position: absolute; /* Change from relative to absolute */
+            bottom: 10px; /* Adjust button position */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Center horizontally */
+            z-index: 1;
+            font-size: 16px; /* Adjust font size */
+            font-weight: bold; /* Make font bold */
+            font-family: 'honest script', sans-serif;
         }
         .heart {
             position: fixed;
@@ -102,37 +109,36 @@
         <h2>Henlo Bembu, avail one of these coupons one at a time<br>💌💌💌</h2>
     </div>
     <div class="envelope-container">
-        <div class="envelope" onclick="changeImage(this,'Help with your side bizznezz(make cutu website)')">
-            <img src="closed.gif" alt="Envelope 1">
+        <div class="envelope"> 
+            <img src="closed.gif" alt="Envelope 1" onclick="changeImage(this.parentNode,'Help with your side bizznezz(make cutu website)')">
             <img class="replacement-image" src="open1.gif" alt="Replacement Image 1">
-           
+            <div class="button" style="display: none;">Your message here</div>
         </div>
-        <div class="envelope" onclick="changeImage(this,'25 kimssies, 5 coomdles , 2 chompps.(P.S: Coomdles and Chompps could only be given upon meeting :3)')">
-            <img src="closed.gif" alt="Envelope 1">
+        <div class="envelope"> 
+            <img src="closed.gif" alt="Envelope 1" onclick="changeImage(this.parentNode,'25 kimssies, 5 coomdles, 2 chompps')">
             <img class="replacement-image" src="open1.gif" alt="Replacement Image 1">
-            
+            <div class="button" style="display: none;">Your message here</div>
         </div>
-        <div class="envelope" onclick="changeImage(this,'Have ramen together')">
-            <img src="closed.gif" alt="Envelope 1">
+        <div class="envelope">
+            <img src="closed.gif" alt="Envelope 1" onclick="changeImage(this.parentNode,'Have ramen together')">
             <img class="replacement-image" src="open1.gif" alt="Replacement Image 1">
-            
+            <div class="button" style="display: none;">Your message here</div>
         </div>
-        <div class="envelope" onclick="changeImage(this,'Get a personalised bookmark from Bembu')">
-            <img src="closed.gif" alt="Envelope 1">
+        <div class="envelope">
+            <img src="closed.gif" alt="Envelope 1" onclick="changeImage(this.parentNode,'Get a personalised bookmark from Bembu')">
             <img class="replacement-image" src="open1.gif" alt="Replacement Image 1">
-            
+            <div class="button" style="display: none;">Your message here</div>
         </div>
-        <div class="envelope" onclick="changeImage(this,'Movie night')"">
-            <img src="closed.gif" alt="Envelope 1">
+        <div class="envelope">
+            <img src="closed.gif" alt="Envelope 1" onclick="changeImage(this.parentNode,'Movie night')">
             <img class="replacement-image" src="open1.gif" alt="Replacement Image 1">
-            
+            <div class="button" style="display: none;">Your message here</div>
         </div>
-        <div class="envelope" onclick="changeImage(this,'Bembu and Kempptu concert')">
-            <img src="closed.gif" alt="Envelope 1">
+        <div class="envelope">
+            <img src="closed.gif" alt="Envelope 1"  onclick="changeImage(this.parentNode,'Bembu and Kempptu concert')">
             <img class="replacement-image" src="open1.gif" alt="Replacement Image 1">
-            <div class="button" style="display: none; position: relative; z-index: 1;">Your message here</div>
+            <div class="button" style="display: none;">Your message here</div>
         </div>
-        <!-- Repeat the above .envelope div for the other 5 envelopes -->
     </div>
     
     <body onclick="createHeart(event)"></body>
@@ -140,19 +146,21 @@
     <script>
         function changeImage(envelope, message) {
             const images = envelope.querySelectorAll('img');
-            const button = document.querySelector('.button');
+            const button = envelope.querySelector('.button'); // Changed to find button within the envelope
     
-            // Add a click event listener to the first image
-            images[0].addEventListener('click', function() {
+            function handleClick() {
                 images[0].style.display = 'none'; // Hide the first image
                 images[1].style.display = 'block'; // Show the replacement image
                 button.textContent = message; // Set the button text to the provided message
                 button.style.display = 'block';
-            });
+                images[0].removeEventListener('click', handleclick);
+            }
+
+            images[0].addEventListener('click', handleClick);
     
             setTimeout(() => {
                 button.style.display = 'none';
-            }, 10000); // The message will stay for 10 seconds
+            }, 7000); // The message will stay for 7 seconds
         }
         function createHeart(event) {
         var heart = document.createElement("div");
@@ -169,8 +177,5 @@
     }
     
     </script>
-    
-    
-    
 </body>
 </html>
